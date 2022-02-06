@@ -1,0 +1,21 @@
+{
+    "name": "bobkosse/persmissions",
+    "description": "Laravel Insertia visuals for spatie/permissions package",
+    "type": "library",
+    "require": {
+        "spatie/laravel-permission": "5.x-dev"
+    },
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "Bobkosse\\Persmissions\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Bob Kosse",
+            "email": "bob@bobkosse.nl"
+        }
+    ],
+    "minimum-stability": "dev"
+}
