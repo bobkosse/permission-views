@@ -1,5 +1,5 @@
 <dh-component>
-    <div class="absolute top-0 bottom-0 left-0 right-0 z-10 py-12 transition duration-150 ease-in-out bg-gray-700 opacity-80" id="modal">
+    <div class="absolute top-0 bottom-0 left-0 right-0 z-10 py-12 transition duration-150 ease-in-out bg-gray-700" id="modal">
         <div role="alert" class="container w-11/12 max-w-lg mx-auto md:w-2/3">
             <div class="relative px-5 py-8 bg-white border border-gray-400 rounded shadow-md md:px-10">
                 <div class="flex justify-start w-full mb-3 text-gray-600" >
@@ -37,6 +37,24 @@
                     </select>
                 </div>
                 <script>new TomSelect('#select-role');</script>
+
+                <label class="inline-block mt-4 text-sm text-gray-600" for="Multiselect">Assign permissions</label>
+                <div class="relative flex w-full">
+                    <select
+                        id="select-permission"
+                        name="permissions[]"
+                        multiple
+                        placeholder="Select permissions..."
+                        autocomplete="off"
+                        class="block w-full rounded-sm cursor-pointer focus:outline-none"
+                        multiple
+                    >
+                        @foreach($permissions as $permission)
+                            <option value="{{ $permission->name }}">{{ $permission->name }}</option>
+                        @endforeach
+                    </select>
+                </div>
+                <script>new TomSelect('#select-permission');</script>
                 
                 
                 <div class="flex items-center justify-start w-full mt-6">
