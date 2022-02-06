@@ -1,6 +1,6 @@
 {
     "name": "bobkosse/persmissions",
-    "description": "Laravel Insertia visuals for spatie/permissions package",
+    "description": "Laravel Livewire visuals for spatie/larvel-permissions package",
     "type": "library",
     "require": {
         "spatie/laravel-permission": "5.x-dev"
