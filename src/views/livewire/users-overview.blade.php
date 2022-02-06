@@ -1,7 +1,6 @@
 <div>
     <h2 class="text-xl font-semibold leading-tight text-gray-800">{{ __('Users') }}</h2>
     
-    <!-- This example requires Tailwind CSS v2.0+ -->
     <div class="flex flex-col mt-6">
         <div class="-my-2 overflow-x-auto">
             <div class="inline-block min-w-full align-middle">
