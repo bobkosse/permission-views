@@ -8,23 +8,23 @@
     <div class="py-12">
         <div class="mx-auto max-w-7xl sm:px-6 lg:px-8">
             <div class="bg-gray-100">
-                <div class="text-gray-800 bg-gray-100" x-data="{ selected: 'option-1' }">
+                <div class="text-gray-800 bg-gray-100" x-data="{ selected: 'users' }">
                 <nav class="bg-gray-100">
                 <ul class="flex">
-                    <li class="px-4 py-2" :class="{ 'bg-white rounded-lg rounded-b-none rounded-t': selected === 'option-1' }">
-                        <a href="#option-1" @click="selected = 'option-1'">{{ __('Users') }}</a>
+                    <li class="px-4 py-2" :class="{ 'bg-white rounded-lg rounded-b-none rounded-t': selected === 'users' }">
+                        <a href="#users" @click="selected = 'users'">{{ __('Users') }}</a>
                     </li>
-                    <li class="px-4 py-2" x-bind:class="{ 'bg-white rounded-lg rounded-b-none rounded-t': selected === 'option-2' }">
-                        <a href="#option-2" x-on:click="selected = 'option-2'">{{ __('Roles') }}</a>
+                    <li class="px-4 py-2" x-bind:class="{ 'bg-white rounded-lg rounded-b-none rounded-t': selected === 'roles' }">
+                        <a href="#roles" x-on:click="selected = 'roles'">{{ __('Roles') }}</a>
                     </li>
                 </ul>
                 </nav>
 
-                <div x-show.transition.in.opacity.duration.750ms="selected === 'option-1'" class="px-4 py-2 bg-white rounded-lg rounded-t-none rounded-b">
+                <div x-show.transition.in.opacity.duration.750ms="selected === 'users'" class="px-4 py-2 bg-white rounded-lg rounded-t-none rounded-b">
                     @livewire('users-overview')
                 </div>
 
-                <div x-show.transition.in.opacity.duration.750ms="selected === 'option-2'" class="px-4 py-2 bg-white rounded-lg rounded-t-none rounded-b">
+                <div x-show.transition.in.opacity.duration.750ms="selected === 'roles'" class="px-4 py-2 bg-white rounded-lg rounded-t-none rounded-b">
                     @livewire('roles-overview')
                 </div>
             </div>
