@@ -29,5 +29,6 @@ class UsersOverview extends Component
     public function closeUserModal()
     {
         $this->showModal = false;
+        $this->render();
     }
 }

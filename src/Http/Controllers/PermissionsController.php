@@ -4,7 +4,7 @@ namespace Bobkosse\Permissions\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 
-class RolesController extends Controller
+class PermissionsController extends Controller
 {
     public function showOverview()
     {

@@ -1,4 +1,5 @@
 <dh-component>
+    <link href="https://cdn.jsdelivr.net/npm/tom-select/dist/css/tom-select.css" rel="stylesheet" />
     <div class="absolute top-0 bottom-0 left-0 right-0 z-10 py-12 transition duration-150 ease-in-out bg-gray-700" id="modal">
         <div role="alert" class="container w-11/12 max-w-lg mx-auto md:w-2/3">
             <div class="relative px-5 py-8 bg-white border border-gray-400 rounded shadow-md md:px-10">
@@ -8,57 +9,59 @@
                     </svg>
                 </div>
                 <h1 class="mb-4 font-bold leading-tight tracking-normal text-gray-800 font-lg">{{ __('Create a new user') }}</h1>
+                @error('user.name') <span class="block text-red-800">{{ $message }}</span> @enderror
                 <label for="name" class="text-sm font-bold leading-tight tracking-normal text-gray-800">{{ __('Name of the user') }}</label>
-                <input name="name" type="text" id="name" class="flex items-center w-full h-10 pl-3 mt-2 mb-5 text-sm font-normal text-gray-600 border border-gray-300 rounded focus:outline-none focus:border focus:border-indigo-700" placeholder="{{ __('John Doe') }}" />
-                
+                <input wire:model.defer="user.name" type="text" id="name" class="flex items-center w-full h-10 pl-3 mt-2 mb-5 text-sm font-normal text-gray-600 border border-gray-300 rounded focus:outline-none focus:border focus:border-indigo-700" placeholder="{{ __('John Doe') }}" />
+ 
+                @error('user.email') <span class="block text-red-800">{{ $message }}</span> @enderror
                 <label for="email" class="text-sm font-bold leading-tight tracking-normal text-gray-800">{{ __('E-mail address') }}</label>
-                <input name="email" type="email" id="email" class="flex items-center w-full h-10 pl-3 mt-2 mb-5 text-sm font-normal text-gray-600 border border-gray-300 rounded focus:outline-none focus:border focus:border-indigo-700" placeholder="{{ __('example@example.com') }}" />
-
-                <label for="password" class="text-sm font-bold leading-tight tracking-normal text-gray-800">{{ __('Initial password') }}</label>
-                <input name="password" type="password" id="password" class="flex items-center w-full h-10 pl-3 mt-2 mb-5 text-sm font-normal text-gray-600 border border-gray-300 rounded focus:outline-none focus:border focus:border-indigo-700" placeholder="{{ __('V3rrY5ecr3t!') }}" />
-
-                <label for="confirm_password" class="text-sm font-bold leading-tight tracking-normal text-gray-800">{{ __('Confirm initial password') }}</label>
-                <input name="confirm_password" type="password" id="confirm_password" class="flex items-center w-full h-10 pl-3 mt-2 mb-5 text-sm font-normal text-gray-600 border border-gray-300 rounded focus:outline-none focus:border focus:border-indigo-700" placeholder="{{ __('V3rrY5ecr3t!') }}" />
+                <input wire:model.defer="user.email" type="email" id="email" class="flex items-center w-full h-10 pl-3 mt-2 mb-5 text-sm font-normal text-gray-600 border border-gray-300 rounded focus:outline-none focus:border focus:border-indigo-700" placeholder="{{ __('example@example.com') }}" />
                 
-                <label class="inline-block text-sm text-gray-600" for="Multiselect">Assign roles</label>
+                @error('user.password') <span class="block text-red-800">{{ $message }}</span> @enderror
+                <label for="password" class="text-sm font-bold leading-tight tracking-normal text-gray-800">{{ __('Initial password') }}</label>
+                <input wire:model.defer="user.password" type="password" id="password" class="flex items-center w-full h-10 pl-3 mt-2 mb-5 text-sm font-normal text-gray-600 border border-gray-300 rounded focus:outline-none focus:border focus:border-indigo-700" placeholder="{{ __('V3rrY5ecr3t!') }}" />
+                
+                @error('user.confirm_passsword') <span class="block text-red-800">{{ $message }}</span> @enderror
+                <label for="confirm_password" class="text-sm font-bold leading-tight tracking-normal text-gray-800">{{ __('Confirm initial password') }}</label>
+                <input wire:model.defer="user.password_confirmation"  type="password" id="confirm_password" class="flex items-center w-full h-10 pl-3 mt-2 mb-5 text-sm font-normal text-gray-600 border border-gray-300 rounded focus:outline-none focus:border focus:border-indigo-700" placeholder="{{ __('V3rrY5ecr3t!') }}" />
+                
+                @error('user.roles') <span class="block text-red-800">{{ $message }}</span> @enderror
+                <label class="inline-block text-sm text-gray-600" for="Multiselect">{{ __('Assign roles') }}</label>
                 <div class="relative flex w-full">
                     <select
-                        id="select-role"
-                        name="roles[]"
+                        id="roles"
                         multiple
                         placeholder="Select roles..."
                         autocomplete="off"
                         class="block w-full rounded-sm cursor-pointer focus:outline-none"
                         multiple
+                        wire:model.defer="user.roles"
                     >
                         @foreach($roles as $role)
                             <option value="{{ $role->name }}">{{ $role->name }}</option>
                         @endforeach
                     </select>
                 </div>
-                <script>new TomSelect('#select-role');</script>
 
-                <label class="inline-block mt-4 text-sm text-gray-600" for="Multiselect">Assign permissions</label>
+                <label class="inline-block mt-4 text-sm text-gray-600" for="Multiselect">{{ __('Assign permissions') }}</label>
                 <div class="relative flex w-full">
                     <select
-                        id="select-permission"
-                        name="permissions[]"
+                        id="permissions"
                         multiple
                         placeholder="Select permissions..."
                         autocomplete="off"
                         class="block w-full rounded-sm cursor-pointer focus:outline-none"
                         multiple
+                        wire:model.defer="user.permissions"
                     >
                         @foreach($permissions as $permission)
                             <option value="{{ $permission->name }}">{{ $permission->name }}</option>
                         @endforeach
                     </select>
                 </div>
-                <script>new TomSelect('#select-permission');</script>
-                
                 
                 <div class="flex items-center justify-start w-full mt-6">
-                    <button class="px-8 py-2 text-sm text-white transition duration-150 ease-in-out bg-indigo-700 rounded focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-700 hover:bg-indigo-600">{{ __('Create user') }}</button>
+                    <button wire:click="createUser()" class="px-8 py-2 text-sm text-white transition duration-150 ease-in-out bg-indigo-700 rounded focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-700 hover:bg-indigo-600">{{ __('Create user') }}</button>
                     <button wire:click="closeModal()" class="px-8 py-2 ml-3 text-sm text-gray-600 transition duration-150 ease-in-out bg-gray-100 border rounded focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-400 hover:border-gray-400 hover:bg-gray-300">{{ __('Cancel') }}</button>
                 </div>
                 <button class="absolute top-0 right-0 mt-4 mr-5 text-gray-400 transition duration-150 ease-in-out rounded cursor-pointer hover:text-gray-600 focus:ring-2 focus:outline-none focus:ring-gray-600" wire:click="closeModal()" aria-label="close modal" role="button">
