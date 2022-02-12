@@ -4,10 +4,10 @@
             {{ __('Users') }}
         </h2>
         <div class="w-1/3">
-            <button wire:click="openModal()" class="inline-flex items-center float-right px-4 py-2 font-bold text-white bg-green-700 rounded-full hover:bg-green-900">
+            <a href="{{ route('permissions.users.management') }}" class="inline-flex items-center float-right px-4 py-2 font-bold text-white bg-green-700 rounded-full hover:bg-green-900">
                 <svg xmlns="http://www.w3.org/2000/svg" class="inline w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="white"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6" /></svg>
                 <span>{{ __('Add user') }}</span>
-            </button>
+            </a>
         </div>
     </div>
     
@@ -62,8 +62,4 @@
     <div class="block h-4"></div>
 
     {{ $users->links() }}
-
-    @if($showModal)
-        @livewire('user-modal')
-    @endif
 </div>

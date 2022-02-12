@@ -4,7 +4,7 @@ namespace Bobkosse\Permissions;
 
 use Bobkosse\Permissions\Console\Commands\SyncPermissions;
 use Bobkosse\Permissions\Http\Livewire\RolesOverview;
-use Bobkosse\Permissions\Http\Livewire\UsersModal;
+use Bobkosse\Permissions\Http\Livewire\UserManagement;
 use Bobkosse\Permissions\Http\Livewire\UsersOverview;
 use Illuminate\Support\ServiceProvider;
 use Livewire\Livewire;
@@ -15,7 +15,7 @@ class PermissionsServiceProvider extends ServiceProvider
     {
         Livewire::component('roles-overview', RolesOverview::class);
         Livewire::component('users-overview', UsersOverview::class);
-        Livewire::component('user-modal', UsersModal::class);
+        Livewire::component('user-management', UserManagement::class);
 
         if ($this->app->runningInConsole()) {
             $this->publishes([__DIR__.'/../src/config/permissions.php' => config_path('permissions.php')], 'permissions');

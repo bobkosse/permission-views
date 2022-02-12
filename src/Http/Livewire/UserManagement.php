@@ -9,7 +9,7 @@ use Livewire\Component;
 use Spatie\Permission\Models\Role;
 use Spatie\Permission\Models\Permission;
 
-class UsersModal extends Component
+class UserManagement extends Component
 {
     public Collection $roles;
 
@@ -44,7 +44,6 @@ class UsersModal extends Component
         'user.roles.present' => 'The user needs at least one role',
         'user.roles.array' => 'The given roles list must be an array',
         'user.permissions.array' => 'The given permissions list must be an array',
-
     ];
 
     public function mount()
@@ -55,27 +54,22 @@ class UsersModal extends Component
 
     public function render()
     {
-        return view('permissions::livewire.users-modal');
-    }
-
-    public function closeModal()
-    {
-        $this->emit('closeUserModal');
+        return view('permissions::livewire.users-management');
     }
 
     public function createUser()
     {
         $this->validate();
 
-        $user = new User();
-        $user->name = $this->user['name'];
-        $user->email = $this->user['email'];
-        $user->password = Hash::make($this->user['password']);
-        $user->save();
+        // $user = new User();
+        // $user->name = $this->user['name'];
+        // $user->email = $this->user['email'];
+        // $user->password = Hash::make($this->user['password']);
+        // $user->save();
 
-        $user->assignRole($this->user['roles']);
-        $user->givePermissionTo($this->user['permissions']);
+        // $user->assignRole($this->user['roles']);
+        // $user->givePermissionTo($this->user['permissions']);
 
-        $this->emit('closeUserModal');
+        // @TODO: Redirect route
     }
 }
