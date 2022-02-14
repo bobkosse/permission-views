@@ -40,25 +40,23 @@ class SyncPermissions extends Command
      */
     public function handle()
     {
-        // @TODO: Add option to set the quard_name via the config
-        
         $permissions = Config::get('permissions.permissions');
         foreach($permissions as $permission_group) {
             foreach($permission_group as $permission) {
                 if(is_array($permission)) {
-                    foreach($permission as $p) {
-                        try {
-                            $perm = Permission::findByName($p);
-                        } catch(PermissionDoesNotExist $e) {
+                    foreach($permission as $p => $guard) {
+                        $perm = Permission::whereName($p)->whereGuardName($guard)->first();
+                        if(!$perm) {
                             $perm = new Permission();
                             $perm->name = $p;
-                            $perm->guard_name = 'web';
+                            $perm->guard_name = $guard;
                             $perm->save();
                         }
                     }
                 }
             }
         }
+    
         return 0;
     }
 }

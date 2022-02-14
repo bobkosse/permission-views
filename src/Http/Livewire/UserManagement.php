@@ -3,7 +3,10 @@
 namespace Bobkosse\Permissions\Http\Livewire;
 
 use App\Models\User;
+use Bobkosse\Permissions\Console\Commands\SyncPermissions;
 use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Support\Facades\Artisan;
+use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\Hash;
 use Livewire\Component;
 use Spatie\Permission\Models\Role;
@@ -13,7 +16,7 @@ class UserManagement extends Component
 {
     public Collection $roles;
 
-    public Collection $permissions;
+    public Array $permissions;
 
     public array $user = [
         'name' => '',
@@ -48,8 +51,12 @@ class UserManagement extends Component
 
     public function mount()
     {
+        if(Config::get('permissions.auto_sync')) {
+            $sync = new SyncPermissions();
+            $sync->handle();
+        }
         $this->roles = Role::all();
-        $this->permissions = Permission::all();
+        $this->permissions = Config::get('permissions.permissions');
     }
 
     public function render()
@@ -59,7 +66,9 @@ class UserManagement extends Component
 
     public function createUser()
     {
-        $this->validate();
+        // $this->validate();
+
+        dd($this->user);
 
         // $user = new User();
         // $user->name = $this->user['name'];

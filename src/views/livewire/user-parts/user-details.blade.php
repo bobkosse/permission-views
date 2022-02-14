@@ -31,9 +31,9 @@
 
         <!-- Password confirmation-->
         <div class="col-span-6 sm:col-span-4">
-            <x-jet-label for="confirm_password" value="{{ __('Confirm initial password') }}" />
-            <x-jet-input id="confirm_password" type="password" class="block w-full mt-1" wire:model.defer="user.confirm_password" placeholder="{{ __('V3rrY5ecr3t!') }}"/>
-            <x-jet-input-error for="user.confirm_password" class="mt-2" />
+            <x-jet-label for="password_confirmation" value="{{ __('Confirm initial password') }}" />
+            <x-jet-input id="password_confirmation" type="password" class="block w-full mt-1" wire:model.defer="user.password_confirmation" placeholder="{{ __('V3rrY5ecr3t!') }}"/>
+            <x-jet-input-error for="user.password_confirmation" class="mt-2" />
         </div>
     </x-slot>
 </x-jet-form-section>
